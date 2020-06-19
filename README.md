@@ -41,11 +41,11 @@ new Autosuggest('#search', {
   
   dataAPI: {
   
-  // searchLike:true 
+    // searchLike:true 
     // if you want to add text dynamically to the address
     searchLike: true,
   
-  // path to remote api
+    // path to remote api
     path: 'https://nominatim.openstreetmap.org/search?format=geojson&city=',
 
     // using a static file also works in this case the GeoJSON format
@@ -70,10 +70,11 @@ new Autosuggest('#search', {
           pinlng: lng,
           name: properties.display_name
         }
+        // converts a JavaScript object or value to a JSON string
         const json = JSON.stringify(jsonData);
         
         // the most important part is data-elements with json
-        // after clicking on li json is added to input #search
+        // after clicking on li json is added to input field #search
         return `<li data-elements='${json}'>
           <p>
             ${properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
@@ -96,6 +97,7 @@ const config = {
 };
 // magnification with which the map will start
 const zoom = 3;
+
 // coordinates
 const lat = 52.22977;
 const lng = 21.01178;
@@ -114,7 +116,7 @@ const markers = [];
 function setNewMarkerAndRemoveOlder() {
   setTimeout(() => {
     const dataElements = document
-      .querySelector('#search') // id of our input for autocomplete
+      .querySelector('#search') // id of our input field for autocomplete
       .getAttribute('data-elements');
 
     // parse JSON
