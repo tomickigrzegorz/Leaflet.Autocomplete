@@ -28,7 +28,7 @@ All plugin configuration options are available at this [AUTOCOMPLETE](https://gi
 
 ```js
 // minimal configure
-new Autosuggest('#search', {
+new Autosuggest('search', {
   // the number of characters entered should start searching
   howManyCharacters: 2,
   
@@ -153,7 +153,7 @@ function handleEvent(event) {
 }
 
 // trigger events click or keyup
-const coordinates = document.querySelector('.output-search');
+const coordinates = document.querySelector('.auto-output-search');
 coordinates.addEventListener('click', handleEvent);
 document.addEventListener('keyup', function (e) {
   e.preventDefault();
