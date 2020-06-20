@@ -1,13 +1,9 @@
 window.addEventListener('DOMContentLoaded', function () {
   // AUTOSUGGEST PART
-  new Autosuggest('#search', {
+  new Autosuggest('search', {
     howManyCharacters: 2,
     delay: 500,
-    output: 'output-list',
-    searchMethod: true,
-    error: {
-      placeholder: 'something went wrong...',
-    },
+    placeholderError: 'something went wrong...',
     clearButton: true,
     dataAPI: {
       // enable if you want to add text
@@ -99,7 +95,7 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   // trigger events click or keyup
-  const coordinates = document.querySelector('.output-search');
+  const coordinates = document.querySelector('.auto-output-search');
   coordinates.addEventListener('click', handleEvent);
   document.addEventListener('keyup', function (e) {
     e.preventDefault();
