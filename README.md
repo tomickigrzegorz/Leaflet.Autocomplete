@@ -46,7 +46,7 @@ new Autosuggest('search', {
     searchLike: true,
   
     // path to remote api
-    path: 'https://nominatim.openstreetmap.org/search?format=geojson&city=',
+    path: 'https://nominatim.openstreetmap.org/search?format=geojson&limit=5&q=',
 
     // using a static file also works in this case the GeoJSON format
     // path: '../assets/search.json',
@@ -54,7 +54,7 @@ new Autosuggest('search', {
 
   // nominatim GeoJSON format parse this part turns json into the list of
   // records that appears when you type.
-  specificOutput: function (matches) {
+  htmlTemplate: function (matches) {
     const regex = new RegExp(matches.searchText, 'i');
     return matches.features.map((element, index) => {
 
