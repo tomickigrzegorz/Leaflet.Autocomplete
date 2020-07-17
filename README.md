@@ -54,7 +54,7 @@ new Autosuggest('search', {
     path: 'https://nominatim.openstreetmap.org/search?format=geojson&limit=5&q=',
 
     // using a static file also works in this case the GeoJSON format
-    // path: '../assets/search.json',
+    // path: './search.json',
   },
 
   // nominatim GeoJSON format parse this part turns json into the list of
