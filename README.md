@@ -1,4 +1,4 @@
-# Leaflet.Autocomplete search outside map
+# Leaflet.Autocomplete GeoSearch outside map - [DEMO](https://tomik23.github.io/Leaflet.Autocomplete/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -12,7 +12,7 @@ This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org
 
 This plugin has no dependencies.
 
-## Usage
+# Usage
 
 ### HTML
 
@@ -20,6 +20,11 @@ This plugin has no dependencies.
 <div class="search">
   <input type="text" id="search"  placeholder="enter the city name">
 </div>
+```
+
+### JS
+```js
+ <script src="./autosuggest.js"></script>
 ```
 
 ### JS for AUTOCOMPLETE

@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
       // using a static file also works 
       // in this case the GeoJSON format
-      // path: '../assets/search.json',
+      //path: './search.json',
     },
     // nominatim GeoJSON format
     htmlTemplate: function (matches) {
@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   // MAP PART
   const config = {
-    minZoom: 6,
+    minZoom: 4,
     maxZomm: 18,
   };
   // magnification with which the map will start
