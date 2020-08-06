@@ -1,5 +1,5 @@
 <h2 align="center">
-Leaflet.Autocomplete GeoSearch outside map)
+Leaflet.Autocomplete GeoSearch outside map
 </h2>
 
 <p align="center">
