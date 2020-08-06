@@ -29,7 +29,7 @@ This example is based on the library [autosuggest](https://github.com/tomik23/au
 ## Demo
 See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
 
-# Usage
+## Usage
 
 HTML
 
