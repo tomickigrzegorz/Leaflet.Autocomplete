@@ -17,17 +17,20 @@ Leaflet.Autocomplete GeoSearch outside map
   <img src="Leaflet.Autocomplete.png">
 </p>
 
-
-We can use remote api or static files, e.g. in the GeoJSON format, but there is nothing to prevent it from being a different format.
-
 This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format
-
-This plugin has no dependencies.
 
 This example is based on the library [autosuggest](https://github.com/tomik23/autosuggest) 
 
 ## Demo
 See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
+
+## Features
+- Use remote api or static files, e.g. in the GeoJSON format, but there is nothing to prevent it from being a different format.
+- Accessible, with full support for ARIA attributes and keyboard interactions.
+- Customize your own CSS.
+- Support for asynchronous data fetching.
+- Move between the records using the arrows <kbd>↓</kbd> <kbd>↑</kbd>, and confirm by <kbd>Enter</kbd>
+- No dependencies
 
 ## Usage
 
