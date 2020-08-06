@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', function () {
     delay: 500,
     placeholderError: 'something went wrong...',
     clearButton: true,
+    noResult: 'No result',
     dataAPI: {
       // enable if you want to add text
       // dynamically to the address
@@ -27,15 +28,48 @@ window.addEventListener('DOMContentLoaded', function () {
             pinlng: lng,
             name: properties.display_name
           }
-          const json = JSON.stringify(jsonData);
-          return `<li data-elements='${json}'>
-          <p>
-            ${properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
-          </p>
+          return `
+          <li class="autocomplete-item loupe" data-elements='${JSON.stringify(jsonData)}' role="option" aria-selected="false" tabindex="-1">
+            <p>
+              ${properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
+            </p>
         </li > `;
         }
       }).join('');
+    },
+    onSubmit: (matches) => {
+
+      setTimeout(() => {
+        const dataElements = document
+          .querySelector('#search')
+          .getAttribute('data-elements');
+
+        // 
+        const { pinlat, pinlng, name } = JSON.parse(dataElements);
+
+        // custom id for marker
+        const customId = Math.random();
+
+        const marker = L.marker([pinlng, pinlat], {
+          title: name,
+          id: customId
+        })
+          .addTo(map)
+          .bindPopup(name);
+
+        map.setView([pinlng, pinlat], 8);
+
+        map.eachLayer(function (layer) {
+          if (layer.options && layer.options.pane === "markerPane") {
+            if (layer.options.id !== customId) {
+              map.removeLayer(layer);
+            }
+          }
+        });
+
+      }, 500);
     }
+
   });
 
 
@@ -58,51 +92,5 @@ window.addEventListener('DOMContentLoaded', function () {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
-
-  // set new marker and remove previous
-  const markers = [];
-  function setNewMarkerAndRemoveOlder() {
-    setTimeout(() => {
-      const dataElements = document
-        .querySelector('#search')
-        .getAttribute('data-elements');
-
-      const { pinlat, pinlng, name } = JSON.parse(dataElements);
-
-      const marker = L.marker([pinlng, pinlat], {
-        title: name,
-      })
-        .addTo(map)
-        .bindPopup(name);
-
-      markers.push(marker);
-      map.setView([pinlng, pinlat], 8);
-
-      if (markers.length > 1) {
-        for (let i = 0; i < markers.length - 1; i++) {
-          map.removeLayer(markers[i]);
-        }
-      }
-    }, 500);
-  }
-
-  // events
-  function handleEvent(event) {
-    event.stopPropagation();
-    if (event.type === 'click' || event.type === 'keyup') {
-      setNewMarkerAndRemoveOlder();
-    }
-  }
-
-  // trigger events click or keyup
-  const coordinates = document.querySelector('.auto-output-search');
-  coordinates.addEventListener('click', handleEvent);
-  document.addEventListener('keyup', function (e) {
-    e.preventDefault();
-    // console.log(e.keyCode);
-    if (e.keyCode === 13 && e.target.id === 'search') {
-      handleEvent(e);
-    }
-  });
 
 });

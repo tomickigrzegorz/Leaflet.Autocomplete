@@ -1,10 +1,19 @@
-# Leaflet.Autocomplete GeoSearch outside map - [DEMO](https://tomik23.github.io/Leaflet.Autocomplete/)
+<h2 align="center">
+Leaflet.Autocomplete GeoSearch outside map)
+</h2>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+  Leaflet.Autocomplete is to expand the autosugestion plugin with the ability to geocode and show data on the map in the way you think you need
+</p>
 
-[Live DEMO](https://tomik23.github.io/Leaflet.Autocomplete/)
+<p align="center">
+<img src="https://img.shields.io/github/package-json/v/tomik23/Leaflet.Autocomplete">
+</p>
 
-Leaflet.Autocomplete is to expand the autosugestion plugin with the ability to geocode and show data on the map in the way you think you need. The search works off the map.
+<p align="center">
+  <img src="Leaflet.Autocomplete.png">
+</p>
+
 
 We can use remote api or static files, e.g. in the GeoJSON format, but there is nothing to prevent it from being a different format.
 
@@ -12,24 +21,31 @@ This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org
 
 This plugin has no dependencies.
 
+This example is based on the library [autosuggest](https://github.com/tomik23/autosuggest) 
+
+## Demo
+See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
+
 # Usage
 
 ### HTML
 
 ```html
 <div class="search">
-  <input type="text" id="search"  placeholder="enter the city name">
+  <input type="text" autocomplete="off" id="search" class="full-width" placeholder="enter the city name">
 </div>
 ```
 
 ### JS
 ```js
- <script src="./autosuggest.js"></script>
+ <script src="./autosuggest.min.js"></script>
+```
+
+### CSS
+```css
 ```
 
 ### JS for AUTOCOMPLETE
-
-All plugin configuration options are available at this [AUTOCOMPLETE](https://github.com/tomik23/autosuggest)
 
 ```js
 // minimal configure
@@ -44,6 +60,9 @@ new Autosuggest('search', {
   // from the input field, a small x to the right of the input field
   clearButton: true, 
   
+  // shows the element if no results
+  noResult: 'No result',
+
   dataAPI: {
   
     // searchLike:true 
@@ -80,13 +99,47 @@ new Autosuggest('search', {
         
         // the most important part is data-elements with json
         // after clicking on li json is added to input field #search
-        return `<li data-elements='${json}'>
+        return `<li class="autocomplete-item loupe" data-elements='${json}' role="option" aria-selected="false" tabindex="-1">
           <p>
             ${properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
           </p>
         </li > `;
       }
     }).join('');
+  },
+  onSubmit: (matches) => {
+
+    setTimeout(() => {
+      const dataElements = document
+        .querySelector('#search')
+        .getAttribute('data-elements');
+
+      // 
+      const { pinlat, pinlng, name } = JSON.parse(dataElements);
+
+      // custom id for marker
+      const customId = Math.random();
+
+      // create marker and add to map
+      const marker = L.marker([pinlng, pinlat], {
+        title: name,
+        id: customId
+      })
+        .addTo(map)
+        .bindPopup(name);
+
+      
+      map.setView([pinlng, pinlat], 8);
+
+      // removing the previous marker
+      map.eachLayer(function (layer) {
+        if (layer.options && layer.options.pane === "markerPane") {
+          if (layer.options.id !== customId) {
+            map.removeLayer(layer);
+          }
+        }
+      });
+    }, 500);
   }
 });
 ```
@@ -116,56 +169,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-// set new marker and remove previous
-const markers = [];
-function setNewMarkerAndRemoveOlder() {
-  setTimeout(() => {
-    const dataElements = document
-      .querySelector('#search') // id of our input field for autocomplete
-      .getAttribute('data-elements');
-
-    // parse JSON
-    const { pinlat, pinlng, name } = JSON.parse(dataElements);
-
-    // create marker
-    const marker = L.marker([pinlng, pinlat], {
-      title: name,
-    })
-      .addTo(map)
-      .bindPopup(name);
-
-    // aad to array markers
-    markers.push(marker);
-
-    // set map center
-    map.setView([pinlng, pinlat], 8);
-
-    // remove previus marker
-    if (markers.length > 1) {
-      for (let i = 0; i < markers.length - 1; i++) {
-        map.removeLayer(markers[i]);
-      }
-    }
-  }, 500);
-}
-
-// event handling
-function handleEvent(event) {
-  event.stopPropagation();
-  if (event.type === 'click' || event.type === 'keyup') {
-    setNewMarkerAndRemoveOlder();
-  }
-}
-
-// trigger events click or keyup
-const coordinates = document.querySelector('.auto-output-search');
-coordinates.addEventListener('click', handleEvent);
-document.addEventListener('keyup', function (e) {
-  e.preventDefault();
-  if (e.keyCode === 13 && e.target.id === 'search') {
-    handleEvent(e);
-  }
-});
 ```
 ## Other options
 
