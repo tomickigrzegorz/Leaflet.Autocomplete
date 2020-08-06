@@ -7,7 +7,10 @@ Leaflet.Autocomplete GeoSearch outside map)
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/package-json/v/tomik23/Leaflet.Autocomplete">
+  <img src="https://img.shields.io/github/package-json/v/tomik23/Leaflet.Autocomplete">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg">
+  </a>
 </p>
 
 <p align="center">
