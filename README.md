@@ -31,7 +31,7 @@ See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
 
 # Usage
 
-### HTML
+HTML
 
 ```html
 <div class="search">
@@ -39,13 +39,15 @@ See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
 </div>
 ```
 
-### JS
-```js
- <script src="./autosuggest.min.js"></script>
+CSS
+```html
+  <link rel="stylesheet" href="./autosuggest.min.css">
+  <link rel="stylesheet" href="./global.min.css">
 ```
 
-### CSS
-```css
+JS
+```html
+ <script src="./autosuggest.min.js"></script>
 ```
 
 ### JS for AUTOCOMPLETE
@@ -110,14 +112,16 @@ new Autosuggest('search', {
       }
     }).join('');
   },
+  // we add an action to enter or click
   onSubmit: (matches) => {
 
     setTimeout(() => {
+      // get data from input
       const dataElements = document
         .querySelector('#search')
         .getAttribute('data-elements');
 
-      // 
+
       const { pinlat, pinlng, name } = JSON.parse(dataElements);
 
       // custom id for marker
@@ -131,7 +135,7 @@ new Autosuggest('search', {
         .addTo(map)
         .bindPopup(name);
 
-      
+      // sets the view of the map
       map.setView([pinlng, pinlat], 8);
 
       // removing the previous marker
@@ -147,9 +151,7 @@ new Autosuggest('search', {
 });
 ```
 
-### JS for MAP
-
-This part is responsible for showing the map, reading inline json with `data-elements` which after clicking was added to `#search`
+### MAP initialization
 
 ```js
 const config = {
