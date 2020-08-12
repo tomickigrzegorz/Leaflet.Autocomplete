@@ -102,7 +102,7 @@ new Autosuggest('search', {
       fetch(api)
         .then(response => response.json())
         .then(data => {
-          resolve(data)
+          resolve(data.features)
         })
         .catch(error => {
           console.error(error);
@@ -113,7 +113,7 @@ new Autosuggest('search', {
   // records that appears when you type.
   onResults: (matches, input) => {
     const regex = new RegExp(input, 'i');
-    return matches.features.map((element, index) => {
+    return matches.map((element, index) => {
 
       // showing only 5 records
       if (index < 5) {
