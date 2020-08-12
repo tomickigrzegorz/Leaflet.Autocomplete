@@ -19,7 +19,9 @@ Leaflet.Autocomplete GeoSearch outside map
 
 This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format
 
-This example is based on the library [autosuggest](https://github.com/tomik23/autosuggest) 
+
+> This example is based on the library [AUTOSUGGEST](https://github.com/tomik23/autosuggest) 
+
 
 ## Demo
 See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
