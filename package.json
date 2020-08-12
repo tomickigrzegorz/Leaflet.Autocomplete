@@ -1,6 +1,6 @@
 {
   "name": "leaflet-autocomplete",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Leaflet.Autocomplete is to expand the autosugestion plugin with the ability to geocode and show data on the map in the way you think you need",
   "main": "docs/script.js",
   "license": "MIT",
