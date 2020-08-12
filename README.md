@@ -59,12 +59,15 @@ JS
 // minimal configure
 new Autosuggest('search', {
   // delay without which the server would not survive ;)
-  delay: 500, 
+  delay: 1000, 
 
   // The parameter set to true adds a button to delete the text
   // from the input field, a small x to the right of the input field
   clearButton: true, 
   
+  // The number of characters entered should start searching
+  howManyCharacters: 2,
+
   // onSearch
   onSearch: (input) => {
     // You can also use static files
@@ -77,11 +80,6 @@ new Autosuggest('search', {
      * axios library to head html
      * https://cdnjs.com/libraries/axios
      */
-    // The number of characters entered should start searching
-    // if (input.length < 2) {
-    //   return [];
-    // }
-
     // return axios.get(api)
     //   .then((response) => {
     //     return response.data;
@@ -94,11 +92,6 @@ new Autosuggest('search', {
      * Promise
      */
     return new Promise((resolve) => {
-      // the number of characters entered should start searching
-      if (input.length < 2) {
-        return resolve([])
-      }
-
       fetch(api)
         .then(response => response.json())
         .then(data => {
