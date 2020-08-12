@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', function () {
   new Autosuggest('search', {
     delay: 500,
     clearButton: true,
+    howManyCharacters: 2,
     // onSearch
     onSearch: (input) => {
       // You can also use static files
@@ -15,11 +16,6 @@ window.addEventListener('DOMContentLoaded', function () {
        * axios library to head html
        * https://cdnjs.com/libraries/axios
        */
-      // The number of characters entered should start searching
-      // if (input.length < 2) {
-      //   return [];
-      // }
-
       // return axios.get(api)
       //   .then((response) => {
       //     return response.data;
@@ -32,11 +28,6 @@ window.addEventListener('DOMContentLoaded', function () {
        * Promise
        */
       return new Promise((resolve) => {
-        // the number of characters entered should start searching
-        if (input.length < 2) {
-          return resolve([])
-        }
-
         fetch(api)
           .then(response => response.json())
           .then(data => {
