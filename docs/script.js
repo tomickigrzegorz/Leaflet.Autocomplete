@@ -1,25 +1,56 @@
 window.addEventListener('DOMContentLoaded', function () {
   // AUTOSUGGEST PART
   new Autosuggest('search', {
-    howManyCharacters: 2,
     delay: 500,
-    placeholderError: 'something went wrong...',
     clearButton: true,
-    noResult: 'No result',
-    dataAPI: {
-      // enable if you want to add text
-      // dynamically to the address
-      searchLike: true,
-      path: 'https://nominatim.openstreetmap.org/search?format=geojson&limit=5&q=',
+    // onSearch
+    onSearch: (input) => {
+      // You can also use static files
+      // const api = '../static/search.json'
+      const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&q=${encodeURI(input)}`;
 
-      // using a static file also works 
-      // in this case the GeoJSON format
-      //path: './search.json',
+      /**
+       * axios
+       * If you want to use axios you have to add the
+       * axios library to head html
+       * https://cdnjs.com/libraries/axios
+       */
+      // The number of characters entered should start searching
+      // if (input.length < 2) {
+      //   return [];
+      // }
+
+      // return axios.get(api)
+      //   .then((response) => {
+      //     return response.data;
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
+
+      /**
+       * Promise
+       */
+      return new Promise((resolve) => {
+        // the number of characters entered should start searching
+        if (input.length < 2) {
+          return resolve([])
+        }
+
+        fetch(api)
+          .then(response => response.json())
+          .then(data => {
+            resolve(data.features)
+          })
+          .catch(error => {
+            console.error(error);
+          })
+      })
     },
     // nominatim GeoJSON format
-    htmlTemplate: function (matches) {
-      const regex = new RegExp(matches.searchText, 'i');
-      return matches.features.map((element, index) => {
+    onResults: (matches, input) => {
+      const regex = new RegExp(input, 'i');
+      return matches.map((element, index) => {
         if (index < 5) {
           const { geometry, properties } = element;
           const [lat, lng] = geometry.coordinates;
