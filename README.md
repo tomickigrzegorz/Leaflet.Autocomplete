@@ -58,9 +58,6 @@ JS
 ```js
 // minimal configure
 new Autosuggest('search', {
-  // the number of characters entered should start searching
-  howManyCharacters: 2,
-  
   // delay without which the server would not survive ;)
   delay: 500, 
 
@@ -68,26 +65,54 @@ new Autosuggest('search', {
   // from the input field, a small x to the right of the input field
   clearButton: true, 
   
-  // shows the element if no results
-  noResult: 'No result',
+  // onSearch
+  onSearch: (input) => {
+    // You can also use static files
+    // const api = '../static/search.json'
+    const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&q=${encodeURI(input)}`;
 
-  dataAPI: {
-  
-    // searchLike:true 
-    // if you want to add text dynamically to the address
-    searchLike: true,
-  
-    // path to remote api
-    path: 'https://nominatim.openstreetmap.org/search?format=geojson&limit=5&q=',
+    /**
+     * axios
+     * If you want to use axios you have to add the
+     * axios library to head html
+     * https://cdnjs.com/libraries/axios
+     */
+    // The number of characters entered should start searching
+    // if (input.length < 2) {
+    //   return [];
+    // }
 
-    // using a static file also works in this case the GeoJSON format
-    // path: './search.json',
+    // return axios.get(api)
+    //   .then((response) => {
+    //     return response.data;
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+
+    /**
+     * Promise
+     */
+    return new Promise((resolve) => {
+      // the number of characters entered should start searching
+      if (input.length < 2) {
+        return resolve([])
+      }
+
+      fetch(api)
+        .then(response => response.json())
+        .then(data => {
+          resolve(data)
+        })
+        .catch(error => {
+          console.error(error);
+        })
+    })
   },
-
   // nominatim GeoJSON format parse this part turns json into the list of
   // records that appears when you type.
-  htmlTemplate: function (matches) {
-    const regex = new RegExp(matches.searchText, 'i');
+  onResults: (matches, input) => {
+    const regex = new RegExp(input, 'i');
     return matches.features.map((element, index) => {
 
       // showing only 5 records
