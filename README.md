@@ -85,6 +85,22 @@ new Autosuggest('search', {
     const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&q=${encodeURI(input)}`;
 
     /**
+     * jquery
+     */
+    // return $.ajax({
+    //     url: api,
+    //     method: 'GET',
+    //   })
+    //   .done(function (data) {
+    //     return data
+    //   })
+    //   .fail(function (xhr) {
+    //     console.error(xhr);
+    //   });
+
+// OR -------------------------------
+
+    /**
      * axios
      * If you want to use axios you have to add the
      * axios library to head html
@@ -97,6 +113,8 @@ new Autosuggest('search', {
     //   .catch(error => {
     //     console.log(error);
     //   });
+
+// OR -------------------------------
 
     /**
      * Promise
