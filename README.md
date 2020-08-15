@@ -67,6 +67,14 @@ new Autosuggest('search', {
   // from the input field, a small x to the right of the input field
   clearButton: true, 
   
+  // default selects the first item in
+  // the list of results
+  selectFirst: true,
+
+  // the scroll of the results follows the selected item when
+  // using the up/down arrows
+  scrollIntoView: true,
+
   // The number of characters entered should start searching
   howManyCharacters: 2,
 

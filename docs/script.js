@@ -3,6 +3,8 @@ window.addEventListener('DOMContentLoaded', function () {
   new Autosuggest('search', {
     delay: 500,
     clearButton: true,
+    selectFirst: true,
+    // scrollIntoView: true,
     howManyCharacters: 2,
     // onSearch
     onSearch: (input) => {
