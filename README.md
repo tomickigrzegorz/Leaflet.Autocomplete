@@ -20,7 +20,7 @@ Leaflet.Autocomplete GeoSearch outside map
 This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format
 
 
-> This example is based on the library [AUTOSUGGEST](https://github.com/tomik23/autosuggest) 
+> This example is based on the library <h3>[AUTOSUGGEST](https://github.com/tomik23/autosuggest)</h3>
 
 
 ## Demo
@@ -37,7 +37,6 @@ See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
 ## Usage
 
 HTML
-
 ```html
 <div class="search">
   <input type="text" autocomplete="off" id="search" class="full-width" placeholder="enter the city name">
@@ -77,6 +76,10 @@ new Autosuggest('search', {
 
   // The number of characters entered should start searching
   howManyCharacters: 2,
+
+  // instruction parameter is optional
+  // https://github.com/tomik23/autosuggest#configuration-of-the-plugin
+  instruction: 'When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures',
 
   // onSearch
   onSearch: (input) => {
@@ -165,12 +168,12 @@ new Autosuggest('search', {
   onSubmit: (matches) => {
 
     setTimeout(() => {
-      // get data from input
+      // get data from input #search
       const dataElements = document
         .querySelector('#search')
         .getAttribute('data-elements');
 
-
+      // parde json
       const { pinlat, pinlng, name } = JSON.parse(dataElements);
 
       // custom id for marker
@@ -188,6 +191,8 @@ new Autosuggest('search', {
       map.setView([pinlng, pinlat], 8);
 
       // removing the previous marker
+      // if you want to leave markers on
+      // the map, remove the code below
       map.eachLayer(function (layer) {
         if (layer.options && layer.options.pane === "markerPane") {
           if (layer.options.id !== customId) {
