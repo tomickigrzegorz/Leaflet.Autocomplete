@@ -52,10 +52,11 @@ window.addEventListener('DOMContentLoaded', function () {
             pinlng: lng,
             name: properties.display_name
           }
+
           return `
-          <li class="autocomplete-item loupe" data-elements='${JSON.stringify(jsonData)}' role="option" aria-selected="false" tabindex="-1">
+          <li class="autocomplete-item loupe" data-elements='${JSON.stringify(jsonData).replace(/[\/\(\)\']/g, "&apos;")}' role="option" aria-selected="false" tabindex="-1">
             <p>
-              ${properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
+              ${properties.display_name}
             </p>
         </li > `;
         }
@@ -63,14 +64,14 @@ window.addEventListener('DOMContentLoaded', function () {
     },
     onSubmit: (matches) => {
 
+      // console.log('onSubmit', matches);
+
       setTimeout(() => {
         const dataElements = document
           .querySelector('#search')
           .getAttribute('data-elements');
 
-        // 
         const { pinlat, pinlng, name } = JSON.parse(dataElements);
-
         // custom id for marker
         const customId = Math.random();
 
