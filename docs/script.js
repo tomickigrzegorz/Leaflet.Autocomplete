@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', function () {
           }
 
           return `
-          <li class="autocomplete-item loupe" data-elements='${JSON.stringify(jsonData).replace(/[\/\(\)\']/g, "&apos;")}' role="option" aria-selected="false" tabindex="-1">
+          <li class="autocomplete-item loupe" data-elements='${JSON.stringify(jsonData).replace(/[\/\(\)\']/g, "&apos;")}' role="option" aria-selected="false">
             <p>
               ${properties.display_name}
             </p>

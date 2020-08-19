@@ -152,11 +152,11 @@ new Autosuggest('search', {
           name: properties.display_name
         }
         // converts a JavaScript object or value to a JSON string
-        const json = JSON.stringify(jsonData);
+        const json = JSON.stringify(jsonData).replace(/[\/\(\)\']/g, "&apos;");
         
         // the most important part is data-elements with json
         // after clicking on li json is added to input field #search
-        return `<li class="autocomplete-item loupe" data-elements='${json}' role="option" aria-selected="false" tabindex="-1">
+        return `<li class="autocomplete-item loupe" data-elements='${json}' role="option" aria-selected="false">
           <p>
             ${properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
           </p>
