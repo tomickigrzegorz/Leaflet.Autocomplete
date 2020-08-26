@@ -2,12 +2,12 @@
   "name": "leaflet-autocomplete",
   "version": "1.0.5",
   "description": "Leaflet.Autocomplete is to expand the autosugestion plugin with the ability to geocode and show data on the map in the way you think you need",
-  "main": "docs/script.js",
+  "main": "docs/autosuggest.min.js",
   "license": "MIT",
   "author": "Grzegorz Tomicki",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tomik23/Leaflet.Autocomplete.git"
+    "url": "https://github.com/tomik23/Leaflet.Autocomplete.git"
   },
   "keywords": [
     "leaflet",
