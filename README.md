@@ -137,70 +137,45 @@ new Autosuggest('search', {
   // records that appears when you type.
   onResults: (matches, input) => {
     const regex = new RegExp(input, 'i');
-    return matches.map((element, index) => {
-
-      // showing only 5 records
-      if (index < 5) {
-        const { geometry, properties } = element;
-        const [lat, lng] = geometry.coordinates;
-      
-        // we create an object that we will insert into data-elements
-        // on the input #search element
-        const jsonData = {
-          pinlat: lat,
-          pinlng: lng,
-          name: properties.display_name
-        }
-        // converts a JavaScript object or value to a JSON string
-        const json = JSON.stringify(jsonData).replace(/[\/\(\)\']/g, "&apos;");
-        
-        // the most important part is data-elements with json
-        // after clicking on li json is added to input field #search
-        return `<li class="autocomplete-item loupe" data-elements='${json}' role="option" aria-selected="false">
+    return matches.map((element) => {
+      return `
+        <li class="autocomplete-item loupe" role="option" aria-selected="false">
           <p>
-            ${properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
+            ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
           </p>
-        </li > `;
-      }
+        </li> `;
     }).join('');
   },
   // we add an action to enter or click
-  onSubmit: (matches) => {
 
-    setTimeout(() => {
-      // get data from input #search
-      const dataElements = document
-        .querySelector('#search')
-        .getAttribute('data-elements');
+  onSubmit: (matches, input) => {
+    const { display_name } = matches.properties;
+    const cord = matches.geometry.coordinates;
 
-      // parde json
-      const { pinlat, pinlng, name } = JSON.parse(dataElements);
+    // custom id for marker
+    const customId = Math.random();
 
-      // custom id for marker
-      const customId = Math.random();
+    // create marker and add to map
+    const marker = L.marker([cord[1], cord[0]], {
+      title: display_name,
+      id: customId
+    })
+      .addTo(map)
+      .bindPopup(display_name);
 
-      // create marker and add to map
-      const marker = L.marker([pinlng, pinlat], {
-        title: name,
-        id: customId
-      })
-        .addTo(map)
-        .bindPopup(name);
+    // sets the view of the map
+    map.setView([cord[1], cord[0]], 8);
 
-      // sets the view of the map
-      map.setView([pinlng, pinlat], 8);
-
-      // removing the previous marker
-      // if you want to leave markers on
-      // the map, remove the code below
-      map.eachLayer(function (layer) {
-        if (layer.options && layer.options.pane === "markerPane") {
-          if (layer.options.id !== customId) {
-            map.removeLayer(layer);
-          }
+    // removing the previous marker
+    // if you want to leave markers on
+    // the map, remove the code below
+    map.eachLayer(function (layer) {
+      if (layer.options && layer.options.pane === "markerPane") {
+        if (layer.options.id !== customId) {
+          map.removeLayer(layer);
         }
-      });
-    }, 500);
+      }
+    });
   }
 });
 ```
