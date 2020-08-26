@@ -70,12 +70,13 @@ window.addEventListener('DOMContentLoaded', function () {
         return `
           <li class="autocomplete-item loupe" role="option" aria-selected="false">
             <p>
-              ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}}
+              ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
             </p>
           </li> `;
       }).join('');
     },
     onSubmit: (matches, input) => {
+      console.log(matches);
       const { display_name } = matches.properties;
       const cord = matches.geometry.coordinates;
       // custom id for marker
