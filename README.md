@@ -70,16 +70,8 @@ new Autosuggest('search', {
   // the list of results
   selectFirst: true,
 
-  // the scroll of the results follows the selected item when
-  // using the up/down arrows
-  scrollIntoView: true,
-
   // The number of characters entered should start searching
   howManyCharacters: 2,
-
-  // instruction parameter is optional
-  // https://github.com/tomik23/autosuggest#configuration-of-the-plugin
-  instruction: 'When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures',
 
   // onSearch
   onSearch: (input) => {
