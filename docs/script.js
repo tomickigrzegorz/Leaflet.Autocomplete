@@ -8,8 +8,9 @@ window.addEventListener('DOMContentLoaded', function () {
     howManyCharacters: 2,
     // onSearch
     onSearch: (input) => {
+      console.log(input)
       // api
-      const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&q=${encodeURI(input)}`;
+      const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(input)}`;
 
       // You can also use static files
       // const api = './search.json'
@@ -65,6 +66,7 @@ window.addEventListener('DOMContentLoaded', function () {
     },
     // nominatim GeoJSON format
     onResults: (matches, input) => {
+      console.log(matches);
       const regex = new RegExp(input, 'i');
       return matches.map((element) => {
         return `

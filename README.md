@@ -77,7 +77,7 @@ new Autosuggest('search', {
   onSearch: (input) => {
     // You can also use static files
     // const api = '../static/search.json'
-    const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&q=${encodeURI(input)}`;
+    const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(input)}`;
 
     /**
      * jquery
