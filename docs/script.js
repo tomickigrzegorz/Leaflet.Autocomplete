@@ -8,7 +8,6 @@ window.addEventListener('DOMContentLoaded', function () {
     howManyCharacters: 2,
     // onSearch
     onSearch: (input) => {
-      console.log(input)
       // api
       const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(input)}`;
 
@@ -66,7 +65,6 @@ window.addEventListener('DOMContentLoaded', function () {
     },
     // nominatim GeoJSON format
     onResults: (matches, input) => {
-      console.log(matches);
       const regex = new RegExp(input, 'i');
       return matches.map((element) => {
         return `
@@ -78,7 +76,6 @@ window.addEventListener('DOMContentLoaded', function () {
       }).join('');
     },
     onSubmit: (matches, input) => {
-      console.log(matches);
       const { display_name } = matches.properties;
       const cord = matches.geometry.coordinates;
       // custom id for marker
@@ -100,6 +97,8 @@ window.addEventListener('DOMContentLoaded', function () {
           }
         }
       });
+
+      console.log(input, matches);
     }
 
   });
