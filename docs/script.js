@@ -4,7 +4,6 @@ window.addEventListener('DOMContentLoaded', function () {
     delay: 500,
     clearButton: true,
     selectFirst: true,
-    // scrollIntoView: true,
     howManyCharacters: 2,
     // onSearch
     onSearch: (input) => {
@@ -68,7 +67,7 @@ window.addEventListener('DOMContentLoaded', function () {
       const regex = new RegExp(input, 'i');
       return matches.map((element) => {
         return `
-          <li class="autocomplete-item loupe" role="option" aria-selected="false">
+          <li class="loupe">
             <p>
               ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
             </p>
