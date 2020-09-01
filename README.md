@@ -131,7 +131,7 @@ new Autosuggest('search', {
     const regex = new RegExp(input, 'i');
     return matches.map((element) => {
       return `
-        <li class="autocomplete-item loupe" role="option" aria-selected="false">
+        <li class="loupe">
           <p>
             ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
           </p>
