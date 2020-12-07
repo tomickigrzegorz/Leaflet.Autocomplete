@@ -3,7 +3,7 @@ Leaflet.Autocomplete GeoSearch outside map
 </h2>
 
 <p align="center">
-  Leaflet.Autocomplete is to expand the autosugestion plugin with the ability to geocode and show data on the map in the way you think you need
+  Leaflet.Autocomplete is to expand the autocomplete plugin with the ability to geocode and show data on the map in the way you think you need
 </p>
 
 <p align="center">
@@ -20,7 +20,7 @@ Leaflet.Autocomplete GeoSearch outside map
 This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format
 
 
-This example is based on the library **[AUTOSUGGEST](https://github.com/tomik23/autosuggest)**
+This example is based on the library **[AUTOCOMPLETE](https://github.com/tomik23/autocomplete)**
 
 
 ## Demo
@@ -45,20 +45,20 @@ HTML
 
 CSS
 ```html
-  <link rel="stylesheet" href="./autosuggest.min.css">
+  <link rel="stylesheet" href="./autocomplete.min.css">
   <link rel="stylesheet" href="./global.min.css">
 ```
 
 JS
 ```html
- <script src="./autosuggest.min.js"></script>
+ <script src="./autocomplete.min.js"></script>
 ```
 
 ### JS for AUTOCOMPLETE
 
 ```js
 // minimal configure
-new Autosuggest('search', {
+new Autocomplete('search', {
   // delay without which the server would not survive ;)
   delay: 1000, 
 

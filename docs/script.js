@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', function () {
-  // AUTOSUGGEST PART
-  new Autosuggest('search', {
+  // autocomplete part
+  new Autocomplete('search', {
     delay: 500,
     clearButton: true,
     selectFirst: true,
