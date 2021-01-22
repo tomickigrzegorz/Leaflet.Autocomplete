@@ -62,32 +62,38 @@ window.addEventListener('DOMContentLoaded', function () {
           })
       })
     },
+
     // nominatim GeoJSON format
     onResults: (matches, input) => {
-      const regex = new RegExp(input, 'i');
-      return matches.map((element) => {
-        return `
+      const regex = new RegExp(input, 'gi');
+
+      // if the result returns 0 we
+      // show the no results element
+      return matches === 0 ? input : matches
+        .map((element) => {
+          return `
           <li class="loupe">
             <p>
               ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
             </p>
           </li> `;
-      }).join('');
+        }).join('');
     },
+
     onSubmit: (matches, input) => {
       const { display_name } = matches.properties;
-      const cord = matches.geometry.coordinates;
+      const [lat, lng] = matches.geometry.coordinates;
       // custom id for marker
       const customId = Math.random();
 
-      const marker = L.marker([cord[1], cord[0]], {
+      const marker = L.marker([lng, lat], {
         title: display_name,
         id: customId
-      })
-        .addTo(map)
-        .bindPopup(display_name);
+      });
 
-      map.setView([cord[1], cord[0]], 8);
+      marker.addTo(map).bindPopup(display_name);
+
+      map.setView([lng, lat], 8);
 
       map.eachLayer(function (layer) {
         if (layer.options && layer.options.pane === "markerPane") {
@@ -98,8 +104,18 @@ window.addEventListener('DOMContentLoaded', function () {
       });
 
       console.log(input, matches);
-    }
+    },
 
+    // get index and data from li element after
+    // hovering over li with the mouse or using
+    // arrow keys ↓ | ↑
+    onSelectedItem: (index, matches) => {
+      console.log('onSelectedItem:', index, matches);
+    },
+
+    // the method presents no results
+    // no results
+    noResults: (input, resultRender) => resultRender(`<li>No results found: "${input}"</li>`),
   });
 
 

@@ -128,18 +128,22 @@ new Autocomplete('search', {
   // nominatim GeoJSON format parse this part turns json into the list of
   // records that appears when you type.
   onResults: (matches, input) => {
-    const regex = new RegExp(input, 'i');
-    return matches.map((element) => {
-      return `
-        <li class="loupe">
-          <p>
-            ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
-          </p>
-        </li> `;
-    }).join('');
-  },
-  // we add an action to enter or click
+    const regex = new RegExp(input, 'gi');
 
+    // if the result returns 0 we
+    // show the no results element
+    return matches === 0 ? input : matches
+      .map((element) => {
+        return `
+          <li class="loupe">
+            <p>
+              ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
+            </p>
+          </li> `;
+      }).join('');
+  },
+
+  // we add an action to enter or click
   onSubmit: (matches, input) => {
     const { display_name } = matches.properties;
     const cord = matches.geometry.coordinates;
@@ -168,7 +172,17 @@ new Autocomplete('search', {
         }
       }
     });
-  }
+  },
+
+  // get index and data from li element after
+  // hovering over li with the mouse or using
+  // arrow keys ↓ | ↑
+  onSelectedItem: (index, matches) => {
+    console.log('onSelectedItem:', index, matches);
+  },
+  
+  // the method presents no results element
+  noResults: (input, resultRender) => resultRender(`<li>No results found: "${input}"</li>`),
 });
 ```
 
