@@ -6,9 +6,9 @@ window.addEventListener('DOMContentLoaded', function () {
     selectFirst: true,
     howManyCharacters: 2,
     // onSearch
-    onSearch: (input) => {
+    onSearch: ({ currentValue }) => {
       // api
-      const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(input)}`;
+      const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(currentValue)}`;
 
       // You can also use static files
       // const api = './search.json'
@@ -64,12 +64,12 @@ window.addEventListener('DOMContentLoaded', function () {
     },
 
     // nominatim GeoJSON format
-    onResults: (matches, input) => {
-      const regex = new RegExp(input, 'gi');
+    onResults: ({ currentValue, matches, template }) => {
+      const regex = new RegExp(currentValue, 'gi');
 
       // if the result returns 0 we
       // show the no results element
-      return matches === 0 ? input : matches
+      return matches === 0 ? template : matches
         .map((element) => {
           return `
           <li class="loupe">
@@ -80,9 +80,9 @@ window.addEventListener('DOMContentLoaded', function () {
         }).join('');
     },
 
-    onSubmit: (matches, input) => {
-      const { display_name } = matches.properties;
-      const [lat, lng] = matches.geometry.coordinates;
+    onSubmit: ({ object }) => {
+      const { display_name } = object.properties;
+      const [lat, lng] = object.geometry.coordinates;
       // custom id for marker
       const customId = Math.random();
 
@@ -102,20 +102,18 @@ window.addEventListener('DOMContentLoaded', function () {
           }
         }
       });
-
-      console.log(input, matches);
     },
 
     // get index and data from li element after
     // hovering over li with the mouse or using
     // arrow keys ↓ | ↑
-    onSelectedItem: (index, matches) => {
-      console.log('onSelectedItem:', index, matches);
+    onSelectedItem: ({ index, element, object }) => {
+      console.log('onSelectedItem:', { index, element, object });
     },
 
     // the method presents no results
     // no results
-    noResults: (input, resultRender) => resultRender(`<li>No results found: "${input}"</li>`),
+    noResults: ({ currentValue, template }) => template(`<li>No results found: "${currentValue}"</li>`),
   });
 
 
