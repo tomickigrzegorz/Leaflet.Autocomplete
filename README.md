@@ -74,10 +74,10 @@ new Autocomplete('search', {
   howManyCharacters: 2,
 
   // onSearch
-  onSearch: (input) => {
+  onSearch: ({ currentValue }) => {
     // You can also use static files
     // const api = '../static/search.json'
-    const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(input)}`;
+    const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(currentValue)}`;
 
     /**
      * jquery
@@ -127,12 +127,12 @@ new Autocomplete('search', {
   },
   // nominatim GeoJSON format parse this part turns json into the list of
   // records that appears when you type.
-  onResults: (matches, input) => {
-    const regex = new RegExp(input, 'gi');
+  onResults: ({ currentValue, matches, template }) => {
+    const regex = new RegExp(currentValue, 'gi');
 
     // if the result returns 0 we
     // show the no results element
-    return matches === 0 ? input : matches
+    return matches === 0 ? template : matches
       .map((element) => {
         return `
           <li class="loupe">
@@ -144,9 +144,9 @@ new Autocomplete('search', {
   },
 
   // we add an action to enter or click
-  onSubmit: (matches, input) => {
-    const { display_name } = matches.properties;
-    const cord = matches.geometry.coordinates;
+  onSubmit: ({ object }) => {
+    const { display_name } = object.properties;
+    const cord = object.geometry.coordinates;
 
     // custom id for marker
     const customId = Math.random();
@@ -177,12 +177,12 @@ new Autocomplete('search', {
   // get index and data from li element after
   // hovering over li with the mouse or using
   // arrow keys ↓ | ↑
-  onSelectedItem: (index, matches) => {
-    console.log('onSelectedItem:', index, matches);
+  onSelectedItem: ({ index, element, object }) => {
+    console.log('onSelectedItem:', index, element, object);
   },
   
   // the method presents no results element
-  noResults: (input, resultRender) => resultRender(`<li>No results found: "${input}"</li>`),
+  noResults: ({ currentValue, template }) => template(`<li>No results found: "${currentValue}"</li>`),
 });
 ```
 
