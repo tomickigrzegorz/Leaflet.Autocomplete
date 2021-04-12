@@ -1,8 +1,6 @@
 window.addEventListener('DOMContentLoaded', function () {
   // autocomplete part
   new Autocomplete('search', {
-    delay: 500,
-    clearButton: true,
     selectFirst: true,
     howManyCharacters: 2,
     // onSearch
