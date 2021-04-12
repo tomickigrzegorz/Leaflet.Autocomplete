@@ -55,17 +55,10 @@ JS
 ```
 
 ### JS for AUTOCOMPLETE
-
+> All parameters controlling the `AUTOCOMPLETE` library available on this page https://tomik23.github.io/autocomplete/
 ```js
 // minimal configure
 new Autocomplete('search', {
-  // delay without which the server would not survive ;)
-  delay: 1000, 
-
-  // The parameter set to true adds a button to delete the text
-  // from the input field, a small x to the right of the input field
-  clearButton: true, 
-  
   // default selects the first item in
   // the list of results
   selectFirst: true,
