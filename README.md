@@ -45,13 +45,13 @@ HTML
 
 CSS
 ```html
-  <link rel="stylesheet" href="./autocomplete.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@latest/docs/css/autocomplete.css">
   <link rel="stylesheet" href="./global.min.css">
 ```
 
 JS
 ```html
- <script src="./autocomplete.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@latest/docs/js/autocomplete.min.js"></script>
 ```
 
 ### JS for AUTOCOMPLETE
