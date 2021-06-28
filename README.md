@@ -38,7 +38,7 @@ See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
 
 HTML
 ```html
-<div class="search">
+<div class="auto-search">
   <input type="text" autocomplete="off" id="search" class="full-width" placeholder="enter the city name">
 </div>
 ```
