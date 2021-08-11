@@ -2,6 +2,8 @@ window.addEventListener('DOMContentLoaded', function () {
   // autocomplete part
   new Autocomplete('search', {
     selectFirst: true,
+    insertToInput: true,
+    cache: true,
     howManyCharacters: 2,
     // onSearch
     onSearch: ({ currentValue }) => {
