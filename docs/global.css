@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Lato&display=swap);
 
+:root {
+  --icon-place: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 0C10.477 0 6 4.477 6 10c0 10 10 22 10 22s10-12 10-22c0-5.523-4.477-10-10-10zm0 16a6 6 0 110-12 6 6 0 010 12z'/%3E%3C/svg%3E");
+}
+
 *,
 :after,
 :before {
@@ -42,4 +46,8 @@ h1 {
   width: 100%;
   max-width: 400px;
   margin: 20px auto;
+}
+
+.auto-search {
+  margin: 10px auto;
 }

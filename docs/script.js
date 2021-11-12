@@ -1,6 +1,6 @@
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener("DOMContentLoaded", function () {
   // autocomplete part
-  new Autocomplete('search', {
+  new Autocomplete("search", {
     selectFirst: true,
     insertToInput: true,
     cache: true,
@@ -8,7 +8,9 @@ window.addEventListener('DOMContentLoaded', function () {
     // onSearch
     onSearch: ({ currentValue }) => {
       // api
-      const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(currentValue)}`;
+      const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(
+        currentValue
+      )}`;
 
       // You can also use static files
       // const api = './search.json'
@@ -53,31 +55,37 @@ window.addEventListener('DOMContentLoaded', function () {
        */
       return new Promise((resolve) => {
         fetch(api)
-          .then(response => response.json())
-          .then(data => {
-            resolve(data.features)
+          .then((response) => response.json())
+          .then((data) => {
+            resolve(data.features);
           })
-          .catch(error => {
+          .catch((error) => {
             console.error(error);
-          })
-      })
+          });
+      });
     },
 
     // nominatim GeoJSON format
     onResults: ({ currentValue, matches, template }) => {
-      const regex = new RegExp(currentValue, 'gi');
+      const regex = new RegExp(currentValue, "gi");
 
       // if the result returns 0 we
       // show the no results element
-      return matches === 0 ? template : matches
-        .map((element) => {
-          return `
-          <li class="loupe">
-            <p>
-              ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
-            </p>
-          </li> `;
-        }).join('');
+      return matches === 0
+        ? template
+        : matches
+            .map((element) => {
+              return `
+                <li>
+                  <p>
+                    ${element.properties.display_name.replace(
+                      regex,
+                      (str) => `<b>${str}</b>`
+                    )}
+                  </p>
+                </li> `;
+            })
+            .join("");
     },
 
     onSubmit: ({ object }) => {
@@ -88,7 +96,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
       const marker = L.marker([lng, lat], {
         title: display_name,
-        id: customId
+        id: customId,
       });
 
       marker.addTo(map).bindPopup(display_name);
@@ -108,14 +116,14 @@ window.addEventListener('DOMContentLoaded', function () {
     // hovering over li with the mouse or using
     // arrow keys ↓ | ↑
     onSelectedItem: ({ index, element, object }) => {
-      console.log('onSelectedItem:', { index, element, object });
+      console.log("onSelectedItem:", { index, element, object });
     },
 
     // the method presents no results
     // no results
-    noResults: ({ currentValue, template }) => template(`<li>No results found: "${currentValue}"</li>`),
+    noResults: ({ currentValue, template }) =>
+      template(`<li>No results found: "${currentValue}"</li>`),
   });
-
 
   // MAP PART
   const config = {
@@ -129,12 +137,11 @@ window.addEventListener('DOMContentLoaded', function () {
   const lng = 21.01178;
 
   // calling map
-  const map = L.map('map', config).setView([lat, lng], zoom);
+  const map = L.map("map", config).setView([lat, lng], zoom);
 
   // Used to load and display tile layers on the map
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
-
 });

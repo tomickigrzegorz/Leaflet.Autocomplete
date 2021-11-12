@@ -19,14 +19,14 @@ Leaflet.Autocomplete GeoSearch outside map
 
 This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format
 
-
 This example is based on the library **[AUTOCOMPLETE](https://github.com/tomik23/autocomplete)**
 
-
 ## Demo
+
 See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
 
 ## Features
+
 - Use remote api or static files, e.g. in the GeoJSON format, but there is nothing to prevent it from being a different format.
 - Accessible, with full support for ARIA attributes and keyboard interactions.
 - Customize your own CSS.
@@ -37,28 +37,42 @@ See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
 ## Usage
 
 HTML
+
 ```html
 <div class="auto-search">
-  <input type="text" autocomplete="off" id="search" class="full-width" placeholder="enter the city name">
+  <input
+    type="text"
+    autocomplete="off"
+    id="search"
+    class="full-width"
+    placeholder="enter the city name"
+  />
 </div>
 ```
 
 CSS
+
 ```html
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@latest/docs/css/autocomplete.css">
-  <link rel="stylesheet" href="./global.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.6.8/dist/css/autocomplete.min.css"
+/>
+<link rel="stylesheet" href="./global.min.css" />
 ```
 
 JS
+
 ```html
- <script src="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@latest/docs/js/autocomplete.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.6.8/dist/js/autocomplete.min.js"></script>
 ```
 
 ### JS for AUTOCOMPLETE
+
 > All parameters controlling the `AUTOCOMPLETE` library available on this page https://tomik23.github.io/autocomplete/
+
 ```js
 // minimal configure
-new Autocomplete('search', {
+new Autocomplete("search", {
   // default selects the first item in
   // the list of results
   selectFirst: true,
@@ -70,7 +84,9 @@ new Autocomplete('search', {
   onSearch: ({ currentValue }) => {
     // You can also use static files
     // const api = '../static/search.json'
-    const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(currentValue)}`;
+    const api = `https://nominatim.openstreetmap.org/search?format=geojson&limit=5&city=${encodeURI(
+      currentValue
+    )}`;
 
     /**
      * jquery
@@ -86,7 +102,7 @@ new Autocomplete('search', {
     //     console.error(xhr);
     //   });
 
-// OR -------------------------------
+    // OR -------------------------------
 
     /**
      * axios
@@ -102,38 +118,44 @@ new Autocomplete('search', {
     //     console.log(error);
     //   });
 
-// OR -------------------------------
+    // OR -------------------------------
 
     /**
      * Promise
      */
     return new Promise((resolve) => {
       fetch(api)
-        .then(response => response.json())
-        .then(data => {
-          resolve(data.features)
+        .then((response) => response.json())
+        .then((data) => {
+          resolve(data.features);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
-        })
-    })
+        });
+    });
   },
   // nominatim GeoJSON format parse this part turns json into the list of
   // records that appears when you type.
   onResults: ({ currentValue, matches, template }) => {
-    const regex = new RegExp(currentValue, 'gi');
+    const regex = new RegExp(currentValue, "gi");
 
     // if the result returns 0 we
     // show the no results element
-    return matches === 0 ? template : matches
-      .map((element) => {
-        return `
+    return matches === 0
+      ? template
+      : matches
+          .map((element) => {
+            return `
           <li class="loupe">
             <p>
-              ${element.properties.display_name.replace(regex, (str) => `<b>${str}</b>`)}
+              ${element.properties.display_name.replace(
+                regex,
+                (str) => `<b>${str}</b>`
+              )}
             </p>
           </li> `;
-      }).join('');
+          })
+          .join("");
   },
 
   // we add an action to enter or click
@@ -147,7 +169,7 @@ new Autocomplete('search', {
     // create marker and add to map
     const marker = L.marker([cord[1], cord[0]], {
       title: display_name,
-      id: customId
+      id: customId,
     })
       .addTo(map)
       .bindPopup(display_name);
@@ -171,11 +193,12 @@ new Autocomplete('search', {
   // hovering over li with the mouse or using
   // arrow keys ↓ | ↑
   onSelectedItem: ({ index, element, object }) => {
-    console.log('onSelectedItem:', index, element, object);
+    console.log("onSelectedItem:", index, element, object);
   },
-  
+
   // the method presents no results element
-  noResults: ({ currentValue, template }) => template(`<li>No results found: "${currentValue}"</li>`),
+  noResults: ({ currentValue, template }) =>
+    template(`<li>No results found: "${currentValue}"</li>`),
 });
 ```
 
@@ -194,15 +217,15 @@ const lat = 52.22977;
 const lng = 21.01178;
 
 // calling map
-const map = L.map('map', config).setView([lat, lng], zoom);
+const map = L.map("map", config).setView([lat, lng], zoom);
 
 // Used to load and display tile layers on the map
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
-
 ```
+
 ## Other options
 
 This example geocodes addresses, but nothing prevents you from showing polygons or other things on the map. Anything you add to `data-elements` can be handled by you and shown on the map.
