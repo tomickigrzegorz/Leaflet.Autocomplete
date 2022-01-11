@@ -17,13 +17,13 @@ Leaflet.Autocomplete GeoSearch outside map
   <img src="Leaflet.Autocomplete.png">
 </p>
 
-This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format
-
-This example is based on the library **[AUTOCOMPLETE](https://github.com/tomik23/autocomplete)**
+This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format and is based on the library **[AUTOCOMPLETE](https://github.com/tomik23/autocomplete)**
 
 ## Demo
 
 See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
+
+You can also use the autocomplete library on a map, see this example: [autocomplete-on-map](https://tomik23.github.io/leaflet-examples/#50.autocomplete-on-map)
 
 ## Features
 
@@ -55,14 +55,14 @@ CSS
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.7.1/dist/css/autocomplete.min.css"
+  href="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.7.3/dist/css/autocomplete.min.css"
 />
 ```
 
 JS
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.7.1/dist/js/autocomplete.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.7.3/dist/js/autocomplete.min.js"></script>
 ```
 
 ### JS for AUTOCOMPLETE
