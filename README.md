@@ -14,7 +14,7 @@ Leaflet.Autocomplete GeoSearch outside map
 </p>
 
 <p align="center">
-  <img src="Leaflet.Autocomplete.png">
+  <img src="./static/Leaflet.Autocomplete.png">
 </p>
 
 This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format and is based on the library **[AUTOCOMPLETE](https://github.com/tomik23/autocomplete)**
@@ -229,4 +229,22 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 This example geocodes addresses, but nothing prevents you from showing polygons or other things on the map. You can use the same library for other purposes.
 
+---
+
+### Autocomplete on the map
+
 A bit of work and you can put this functionality on the map, see an example: [autocomplete-on-map](https://tomik23.github.io/leaflet-examples/#50.autocomplete-on-map)
+
+<p align="center">
+  <img src="./static/autocomplete-on-map.png">
+</p>
+
+---
+
+### Multi layer search
+
+You can also search in layers using this library: [multi-layer-search](https://tomik23.github.io/leaflet-examples/#45.multi-layer-search). Each color reflects a separate layer. In the example, there are exactly three layers - restaurant, bar and pharmacy.
+
+<p align="center">
+  <img src="./static/multi-layer-search.png">
+</p>
