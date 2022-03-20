@@ -55,14 +55,14 @@ CSS
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.7.3/dist/css/autocomplete.min.css"
+  href="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.8.3/dist/css/autocomplete.min.css"
 />
 ```
 
 JS
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.7.3/dist/js/autocomplete.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.8.3/dist/js/autocomplete.min.js"></script>
 ```
 
 ### JS for AUTOCOMPLETE
@@ -233,7 +233,7 @@ This example geocodes addresses, but nothing prevents you from showing polygons 
 
 ### Autocomplete on the map
 
-A bit of work and you can put this functionality on the map, see an example: [autocomplete-on-map](https://tomik23.github.io/leaflet-examples/#50.autocomplete-on-map)
+A bit of work and you can put this functionality on the map, see an example: [autocomplete-on-map-button](https://tomik23.github.io/leaflet-examples/#50.autocomplete-on-map-button)
 
 <p align="center">
   <img src="./static/autocomplete-on-map.png">
