@@ -241,10 +241,20 @@ A bit of work and you can put this functionality on the map, see an example: [au
 
 ---
 
-### Multi layer search
+### Multi-layer search
 
 You can also search in layers using this library: [multi-layer-search](https://tomik23.github.io/leaflet-examples/#45.multi-layer-search). Each color reflects a separate layer. In the example, there are exactly three layers - restaurant, bar and pharmacy.
 
 <p align="center">
   <img src="./static/multi-layer-search.png">
+</p>
+
+---
+
+### Autocomplete with geojson
+
+You can also search in FeatureCollection: [autocomplete-with-geojson](https://tomik23.github.io/leaflet-examples/https://tomik23.github.io/leaflet-examples/#64.autocomplete-with-geojson)
+
+<p align="center">
+  <img src="./static/autocomplete-width-gepjson.png">
 </p>
