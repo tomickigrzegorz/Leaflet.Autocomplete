@@ -159,33 +159,23 @@ new Autocomplete("search", {
 
   // we add an action to enter or click
   onSubmit: ({ object }) => {
-    const { display_name } = object.properties;
-    const cord = object.geometry.coordinates;
-
-    // custom id for marker
-    const customId = Math.random();
-
-    // create marker and add to map
-    const marker = L.marker([cord[1], cord[0]], {
-      title: display_name,
-      id: customId,
-    })
-      .addTo(map)
-      .bindPopup(display_name);
-
-    // sets the view of the map
-    map.setView([cord[1], cord[0]], 8);
-
-    // removing the previous marker
-    // if you want to leave markers on
-    // the map, remove the code below
+    // remove all layers from the map
     map.eachLayer(function (layer) {
-      if (layer.options && layer.options.pane === "markerPane") {
-        if (layer.options.id !== customId) {
-          map.removeLayer(layer);
-        }
+      if (!!layer.toGeoJSON) {
+        map.removeLayer(layer);
       }
     });
+
+    const { display_name } = object.properties;
+    const [lat, lng] = object.geometry.coordinates;
+
+    const marker = L.marker([lng, lat], {
+      title: display_name,
+    });
+
+    marker.addTo(map).bindPopup(display_name);
+
+    map.setView([lng, lat], 8);
   },
 
   // get index and data from li element after
