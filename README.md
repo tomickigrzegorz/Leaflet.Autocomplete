@@ -243,7 +243,7 @@ You can also search in layers using this library: [multi-layer-search](https://t
 
 ### Autocomplete with geojson
 
-You can also search in FeatureCollection: [autocomplete-with-geojson](https://tomik23.github.io/leaflet-examples/https://tomik23.github.io/leaflet-examples/#64.autocomplete-with-geojson)
+You can also search in FeatureCollection: [autocomplete-with-geojson](https://tomik23.github.io/leaflet-examples/#64.autocomplete-with-geojson)
 
 <p align="center">
   <img src="./static/autocomplete-width-gepjson.png">
