@@ -95,7 +95,7 @@ new Autocomplete("search", {
     });
 
     const { display_name } = object.properties;
-    const [lat, lng] = object.geometry.coordinates;
+    const [lng, lat] = object.geometry.coordinates;
     // custom id for marker
 
     const marker = L.marker([lat, lng], {
