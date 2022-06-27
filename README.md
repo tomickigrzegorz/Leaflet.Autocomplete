@@ -167,15 +167,15 @@ new Autocomplete("search", {
     });
 
     const { display_name } = object.properties;
-    const [lat, lng] = object.geometry.coordinates;
+    const [lng, lat] = object.geometry.coordinates;
 
-    const marker = L.marker([lng, lat], {
+    const marker = L.marker([lat, lng], {
       title: display_name,
     });
 
     marker.addTo(map).bindPopup(display_name);
 
-    map.setView([lng, lat], 8);
+    map.setView([lat, lng], 8);
   },
 
   // get index and data from li element after
