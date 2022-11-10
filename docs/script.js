@@ -125,7 +125,7 @@ new Autocomplete("search", {
 // MAP PART
 const config = {
   minZoom: 4,
-  maxZomm: 18,
+  maxZoom: 18,
 };
 // magnification with which the map will start
 const zoom = 3;
