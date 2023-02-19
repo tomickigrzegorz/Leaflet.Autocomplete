@@ -6,7 +6,7 @@
   "author": "Grzegorz Tomicki",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tomik23/Leaflet.Autocomplete.git"
+    "url": "https://github.com/tomickigrzegorz/Leaflet.Autocomplete.git"
   },
   "keywords": [
     "leaflet",
@@ -15,5 +15,5 @@
     "geocoding",
     "nominatim"
   ],
-  "homepage": "https://github.com/tomik23/Leaflet.Autocomplete#readme"
+  "homepage": "https://github.com/tomickigrzegorz/Leaflet.Autocomplete#readme"
 }

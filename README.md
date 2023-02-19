@@ -7,7 +7,7 @@ Leaflet.Autocomplete GeoSearch outside map
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/package-json/v/tomik23/Leaflet.Autocomplete">
+  <img src="https://img.shields.io/github/package-json/v/tomickigrzegorz/Leaflet.Autocomplete">
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-green.svg">
   </a>
@@ -17,13 +17,13 @@ Leaflet.Autocomplete GeoSearch outside map
   <img src="./static/Leaflet.Autocomplete.png">
 </p>
 
-This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format and is based on the library **[AUTOCOMPLETE](https://github.com/tomik23/autocomplete)**
+This example uses remote api for geocoding [NOMINATIM-API](https://nominatim.org/release-docs/latest/api/Search/) in GeoJSON format and is based on the library **[AUTOCOMPLETE](https://github.com/tomickigrzegorz/autocomplete)**
 
 ## Demo
 
-See the demo - [example](https://tomik23.github.io/Leaflet.Autocomplete/)
+See the demo - [example](https://tomickigrzegorz.github.io/Leaflet.Autocomplete/)
 
-You can also use the autocomplete library on a map, see this example: [autocomplete-on-map](https://tomik23.github.io/leaflet-examples/#50.autocomplete-on-map)
+You can also use the autocomplete library on a map, see this example: [autocomplete-on-map](https://tomickigrzegorz.github.io/leaflet-examples/#50.autocomplete-on-map)
 
 ## Features
 
@@ -55,19 +55,19 @@ CSS
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.8.3/dist/css/autocomplete.min.css"
+  href="https://cdn.jsdelivr.net/gh/tomickigrzegorz/autocomplete@1.8.3/dist/css/autocomplete.min.css"
 />
 ```
 
 JS
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/tomik23/autocomplete@1.8.3/dist/js/autocomplete.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/tomickigrzegorz/autocomplete@1.8.3/dist/js/autocomplete.min.js"></script>
 ```
 
 ### JS for AUTOCOMPLETE
 
-> All parameters controlling the `AUTOCOMPLETE` library available on this page https://tomik23.github.io/autocomplete/
+> All parameters controlling the `AUTOCOMPLETE` library available on this page https://tomickigrzegorz.github.io/autocomplete/
 
 ```js
 // minimal configure
@@ -223,7 +223,7 @@ This example geocodes addresses, but nothing prevents you from showing polygons 
 
 ### Autocomplete on the map
 
-A bit of work and you can put this functionality on the map, see an example: [autocomplete-on-map-button](https://tomik23.github.io/leaflet-examples/#50.autocomplete-on-map-button)
+A bit of work and you can put this functionality on the map, see an example: [autocomplete-on-map-button](https://tomickigrzegorz.github.io/leaflet-examples/#50.autocomplete-on-map-button)
 
 <p align="center">
   <img src="./static/autocomplete-on-map.png">
@@ -233,7 +233,7 @@ A bit of work and you can put this functionality on the map, see an example: [au
 
 ### Multi-layer search
 
-You can also search in layers using this library: [multi-layer-search](https://tomik23.github.io/leaflet-examples/#45.multi-layer-search). Each color reflects a separate layer. In the example, there are exactly three layers - restaurant, bar and pharmacy.
+You can also search in layers using this library: [multi-layer-search](https://tomickigrzegorz.github.io/leaflet-examples/#45.multi-layer-search). Each color reflects a separate layer. In the example, there are exactly three layers - restaurant, bar and pharmacy.
 
 <p align="center">
   <img src="./static/multi-layer-search.png">
@@ -243,7 +243,7 @@ You can also search in layers using this library: [multi-layer-search](https://t
 
 ### Autocomplete with geojson
 
-You can also search in FeatureCollection: [autocomplete-with-geojson](https://tomik23.github.io/leaflet-examples/#64.autocomplete-with-geojson)
+You can also search in FeatureCollection: [autocomplete-with-geojson](https://tomickigrzegorz.github.io/leaflet-examples/#64.autocomplete-with-geojson)
 
 <p align="center">
   <img src="./static/autocomplete-width-gepjson.png">
