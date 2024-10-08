@@ -51,3 +51,7 @@ h1 {
 .auto-search-wrapper {
   margin: 10px auto;
 }
+
+.auto-results-wrapper.auto-is-active {
+  z-index: 999;
+}
